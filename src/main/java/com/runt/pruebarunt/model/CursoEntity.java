@@ -11,11 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "curso")
 public class CursoEntity implements Serializable{
@@ -34,5 +36,10 @@ public class CursoEntity implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "colegio_id")
 	private ColegioEntity colegio;
+
+	@Override
+	public String toString() {
+		return "CursoEntity [id=" + id + ", grado=" + grado + ", salon=" + salon + ", colegio=" + colegio+"]";
+	}
 	
 }

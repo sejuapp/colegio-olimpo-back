@@ -8,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "colegio")
 public class ColegioEntity extends DescriptivoNombre implements Serializable {
@@ -22,4 +24,8 @@ public class ColegioEntity extends DescriptivoNombre implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Override
+	public String toString() {
+		return "ColegioEntity(id=" + this.getId() + ", nombre=" + this.getNombre() + ")";
+	}
 }
