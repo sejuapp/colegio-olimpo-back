@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.runt.pruebarunt.dto.AsignaturaCursoDto;
+import com.runt.pruebarunt.model.AsignaturaEntity;
 import com.runt.pruebarunt.service.AsignaturaService;
 
 @RestController
@@ -22,5 +23,10 @@ public class AsignaturaController {
 	@GetMapping(path = "/find-by-profesor/{profesorId}")
 	public List<AsignaturaCursoDto> findByProfesor(@PathVariable Long profesorId) {
 		return this.asignaturaService.findAsignaturaByProfesor( profesorId);
+	}
+	
+	@GetMapping(path = "/find-by-profesor-2/{profesorId}")
+	public List<AsignaturaEntity> findByProfesor2(@PathVariable Long profesorId) {
+		return this.asignaturaService.findAsignaturaByProfesor2( profesorId);
 	}
 }

@@ -17,19 +17,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "curso")
-public class CursoEntity implements Serializable{
+public class CursoEntity implements Serializable {
 	private static final long serialVersionUID = 4213539096348267165L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "grado")
 	private Integer grado;
-	
+
 	@Column(name = "salon")
 	private String salon;
 
@@ -37,9 +37,13 @@ public class CursoEntity implements Serializable{
 	@JoinColumn(name = "colegio_id")
 	private ColegioEntity colegio;
 
+//	@OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//	List<AsignaturaEntity> asignaturas;
+
 	@Override
 	public String toString() {
-		return "CursoEntity [id=" + id + ", grado=" + grado + ", salon=" + salon + ", colegio=" + colegio+"]";
+		return "CursoEntity [id=" + id + ", grado=" + grado + ", salon=" + salon + ", colegio=" + colegio + "]";
 	}
-	
+
 }

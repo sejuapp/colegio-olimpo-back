@@ -29,7 +29,7 @@ public class AsignaturaEstudianteDao implements Serializable {
 		MapSqlParameterSource np = new MapSqlParameterSource();
 		np.addValue("pAsignaturaId", pAsignaturaId);
 		
-		return genericAccesDataService.namedParameterQuery(sql, np, new  AsignaturaEstudianteDtoRowMapper());
+		return genericAccesDataService.namedParameterQuery(sql, np, AsignaturaEstudianteDto.class);
 		
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.runt.pruebarunt.dao.AsignaturaDao;
 import com.runt.pruebarunt.dao.AsignaturaEstudianteDao;
 import com.runt.pruebarunt.dto.AsignaturaCursoDto;
+import com.runt.pruebarunt.model.AsignaturaEntity;
+import com.runt.pruebarunt.repository.IAsignaturaRepository;
 
 @Service
 public class AsignaturaService {
@@ -19,6 +21,9 @@ public class AsignaturaService {
 	
 	@Autowired
 	private AsignaturaEstudianteDao asignaturaEstudianteDao;
+	
+	@Autowired
+	private IAsignaturaRepository iAsignaturaRepository;
 
 
 	@Transactional(readOnly = true)
@@ -31,5 +36,13 @@ public class AsignaturaService {
 		
 		return lst;
 	}
+	
+	@Transactional(readOnly = true)
+	public List<AsignaturaEntity> findAsignaturaByProfesor2(Long profesorId) {
+		
+		return this.iAsignaturaRepository.buscarAsignaturaByProfesor(profesorId);
+
+	}
+	
 
 }

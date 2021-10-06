@@ -15,9 +15,9 @@ public interface IAsignaturaRepository extends JpaRepository<AsignaturaEntity, L
 	@Query(nativeQuery = false, value = ""
 			+ "SELECT a " 
 			+ "FROM AsignaturaEntity a " 
-			+ "JOIN a.profesor p "
+			+ "LEFT JOIN FETCH a.profesor p "
 			+ "WHERE p.id = :profesorId ")
-	List<AsignaturaEntity> findAsignaturaByProfesor(@Param("profesorId") Long profesorId);
+	List<AsignaturaEntity> buscarAsignaturaByProfesor(@Param("profesorId") Long profesorId);
 	
 	List<AsignaturaEntity> findByProfesorId(Long id);
 	

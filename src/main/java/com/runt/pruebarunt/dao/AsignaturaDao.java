@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.runt.pruebarunt.converter.AsignaturaCursoDtoRowMapper;
 import com.runt.pruebarunt.dto.AsignaturaCursoDto;
 import com.runt.pruebarunt.service.GenericAccesDataService;
 
@@ -21,7 +20,7 @@ public class AsignaturaDao  implements Serializable{
 	public List<AsignaturaCursoDto> findAsignaturaByProfesor(Long profesorId) {
 		 
 		String sql = new StringBuilder().append("")
-				.append("SELECT a.id, a.profesor_id, a.nombre, a.curso_id, c.grado, c.salon ")
+				.append("SELECT a.id, a.profesor_id as profesorId, a.nombre, a.curso_id as cursoId, c.grado, c.salon ")
 				.append("FROM asignatura a ")
 				.append("LEFT JOIN curso c ON c.id = a.curso_id ")
 				.append("WHERE a.profesor_id =:profesorId ")
@@ -30,7 +29,7 @@ public class AsignaturaDao  implements Serializable{
 		MapSqlParameterSource np = new MapSqlParameterSource();
 		np.addValue("profesorId", profesorId);
 		
-		return genericAccesDataService.namedParameterQuery(sql, np, new  AsignaturaCursoDtoRowMapper());
+		return genericAccesDataService.namedParameterQuery(sql, np, AsignaturaCursoDto.class);
 		
 	}
 }
